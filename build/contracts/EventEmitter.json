@@ -1,0 +1,723 @@
+{
+  "contractName": "EventEmitter",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "newTransaction",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "scheduledBy",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "scheduledFrom",
+          "type": "address"
+        }
+      ],
+      "name": "NewTransactionScheduled",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newTransaction",
+          "type": "address"
+        },
+        {
+          "name": "_scheduledBy",
+          "type": "address"
+        }
+      ],
+      "name": "logNewTransactionScheduled",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b61015f8061001e6000396000f300606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806382faa64014610046575b600080fd5b341561005157600080fd5b61009c600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061009e565b005b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f4b348504191e81b6d2880fa3e9f5049c17367eab80834ed507ea4e7998b4e81784604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a350505600a165627a7a72305820d3407acaca63647f175f947aacf067bab5fe0170a07815a0829da51cf8ba143b0029",
+  "deployedBytecode": "0x606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806382faa64014610046575b600080fd5b341561005157600080fd5b61009c600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061009e565b005b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f4b348504191e81b6d2880fa3e9f5049c17367eab80834ed507ea4e7998b4e81784604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a350505600a165627a7a72305820d3407acaca63647f175f947aacf067bab5fe0170a07815a0829da51cf8ba143b0029",
+  "sourceMap": "26:1424:12:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:1424:12:-;;;;;;;;;;;;;;;;;;;;;;;;514:390;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;886:10;831:66;;872:12;831:66;;;855:15;831:66;;;;;;;;;;;;;;;;;;;;;;514:390;;:::o",
+  "source": "pragma solidity ^0.4.19;\n\ncontract EventEmitter {\n    event NewTransactionScheduled(address newTransaction, address indexed scheduledBy, address indexed scheduledFrom);\n    // event Parameters(\n    //     bytes2 temporalUnit,\n    //     address recipient,\n    //     uint256 value,\n    //     uint256 callGas,\n    //     uint256 gasPrice,\n    //     uint256 executionWindowStart,\n    //     uint256 executionWindowLength,\n    //     uint256 bounty,\n    //     uint256 fee,\n    //     bytes callData\n    // );\n\n    function logNewTransactionScheduled(\n        address _newTransaction,\n        address _scheduledBy\n    )\n        public\n    {\n        // This will log the `msg.sender` as the last indexed address so that TimeNodes can filter by where\n        // the event originated from. Tries to mitigate spam attacks.\n        emit NewTransactionScheduled(_newTransaction, _scheduledBy, msg.sender);\n    }\n\n    // function logParameters(\n    //     bytes2 _temporalUnit,\n    //     address _recipient,\n    //     uint256 _value,\n    //     uint256 _callGas,\n    //     uint256 _gasPrice,\n    //     uint256 _executionWindowStart,\n    //     uint256 _executionWindowLength,\n    //     uint256 _bounty,\n    //     uint256 _fee,\n    //     bytes _callData\n    // )\n    //     public\n    // {\n    //     Parameters(_temporalUnit, _recipient, _value, _callGas, _gasPrice, _executionWindowStart, _executionWindowLength, _bounty, _fee, _callData);\n    // }\n}",
+  "sourcePath": "/home/logan/Work/EAC-v2/contracts/EventEmitter.sol",
+  "ast": {
+    "absolutePath": "/home/logan/Work/EAC-v2/contracts/EventEmitter.sol",
+    "exportedSymbols": {
+      "EventEmitter": [
+        3362
+      ]
+    },
+    "id": 3363,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3338,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".19"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:12"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 3362,
+        "linearizedBaseContracts": [
+          3362
+        ],
+        "name": "EventEmitter",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 3346,
+            "name": "NewTransactionScheduled",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3345,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3340,
+                  "indexed": false,
+                  "name": "newTransaction",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3346,
+                  "src": "84:22:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3339,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "84:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3342,
+                  "indexed": true,
+                  "name": "scheduledBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3346,
+                  "src": "108:27:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3341,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "108:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3344,
+                  "indexed": true,
+                  "name": "scheduledFrom",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3346,
+                  "src": "137:29:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3343,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "137:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "83:84:12"
+            },
+            "src": "54:114:12"
+          },
+          {
+            "body": {
+              "id": 3360,
+              "nodeType": "Block",
+              "src": "638:266:12",
+              "statements": [
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3354,
+                        "name": "_newTransaction",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3348,
+                        "src": "855:15:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 3355,
+                        "name": "_scheduledBy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3350,
+                        "src": "872:12:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 3356,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4425,
+                          "src": "886:3:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 3357,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "886:10:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 3353,
+                      "name": "NewTransactionScheduled",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3346,
+                      "src": "831:23:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address,address)"
+                      }
+                    },
+                    "id": 3358,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "831:66:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3359,
+                  "nodeType": "EmitStatement",
+                  "src": "826:71:12"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 3361,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "logNewTransactionScheduled",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3351,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3348,
+                  "name": "_newTransaction",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3361,
+                  "src": "559:23:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3347,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "559:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3350,
+                  "name": "_scheduledBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3361,
+                  "src": "592:20:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3349,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "592:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "549:69:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3352,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "638:0:12"
+            },
+            "scope": 3362,
+            "src": "514:390:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3363,
+        "src": "26:1424:12"
+      }
+    ],
+    "src": "0:1450:12"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/logan/Work/EAC-v2/contracts/EventEmitter.sol",
+    "exportedSymbols": {
+      "EventEmitter": [
+        3362
+      ]
+    },
+    "id": 3363,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3338,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".19"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:12"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 3362,
+        "linearizedBaseContracts": [
+          3362
+        ],
+        "name": "EventEmitter",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 3346,
+            "name": "NewTransactionScheduled",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3345,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3340,
+                  "indexed": false,
+                  "name": "newTransaction",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3346,
+                  "src": "84:22:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3339,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "84:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3342,
+                  "indexed": true,
+                  "name": "scheduledBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3346,
+                  "src": "108:27:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3341,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "108:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3344,
+                  "indexed": true,
+                  "name": "scheduledFrom",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3346,
+                  "src": "137:29:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3343,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "137:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "83:84:12"
+            },
+            "src": "54:114:12"
+          },
+          {
+            "body": {
+              "id": 3360,
+              "nodeType": "Block",
+              "src": "638:266:12",
+              "statements": [
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 3354,
+                        "name": "_newTransaction",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3348,
+                        "src": "855:15:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 3355,
+                        "name": "_scheduledBy",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3350,
+                        "src": "872:12:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 3356,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4425,
+                          "src": "886:3:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 3357,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "886:10:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 3353,
+                      "name": "NewTransactionScheduled",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3346,
+                      "src": "831:23:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_address_$returns$__$",
+                        "typeString": "function (address,address,address)"
+                      }
+                    },
+                    "id": 3358,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "831:66:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3359,
+                  "nodeType": "EmitStatement",
+                  "src": "826:71:12"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 3361,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "logNewTransactionScheduled",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3351,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3348,
+                  "name": "_newTransaction",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3361,
+                  "src": "559:23:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3347,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "559:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3350,
+                  "name": "_scheduledBy",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3361,
+                  "src": "592:20:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3349,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "592:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "549:69:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3352,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "638:0:12"
+            },
+            "scope": 3362,
+            "src": "514:390:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3363,
+        "src": "26:1424:12"
+      }
+    ],
+    "src": "0:1450:12"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+  },
+  "networks": {
+    "1523440791497": {
+      "events": {},
+      "links": {},
+      "address": "0x57b5d7f53661b07b52932a8a8946d1beedb3756a",
+      "transactionHash": "0x3a181d8c9ebd79552182c395807f331551336b4bf92ffde5476ca824388a6a71"
+    }
+  },
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-04-11T10:00:07.603Z"
+}
