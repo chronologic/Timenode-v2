@@ -1,7 +1,6 @@
-const Contract = require('ethers').Contract
-const providers = require('ethers').providers
-const utils = require('ethers').utils
-const Wallet = require('ethers').Wallet
+const Web3 = require('web3')
+const provider = new Web3.providers.HttpProvider("http://localhost:8545")
+const web3 = new Web3(provider)
 
 const { getABI } = require('./utils')
 
@@ -9,21 +8,18 @@ const Serializer = require('./serializer')
 
 const Scheduler = function() {}
 
-Scheduler.boot = (schedulerAddress, wallet) => {
+Scheduler.boot = (schedulerAddress) => {
     const abi = getABI('Scheduler')
 
-    const instance = new Contract(
+    const instance = web3.eth.contract(abi).at(
         schedulerAddress,
-        abi,
-        wallet,
     )
+
     return instance
 }
 
 const main = async () => {
-    const provider = new providers.JsonRpcProvider()
-
-    const curBlock = await provider.getBlockNumber()
+    const curBlock = web3.eth.blockNumber
     const recipient = '0x7eD1E469fCb3EE19C0366D829e291451bE638E59'
     const value = 10
     const callGas = 20
@@ -47,22 +43,14 @@ const main = async () => {
         callData,
     )
 
-    const privateKey = '0x0123456789012345678901234567890123456789012345678901234567890123'
-    const wallet = new Wallet(privateKey)
-    wallet.provider = provider
+    const scheduler = Scheduler.boot('0x0f06cc8d999a2b99ca458bdaf5ea0fbd668f9533')
 
-    const scheduler = Scheduler.boot(
-        '0xe5f3e941b35c3baca33a18ce31db79f11243d6e8',
-        wallet,
-    )
+    // console.log(scheduler.schedule)
 
-    console.log('Signing from: ' + wallet.getAddress())
-    console.log('Balance: ' + 
-        utils.formatEther(
-            (await wallet.getBalance()).toString()
-        ) + ' ' + utils.etherSymbol
-    )
-    console.log(await scheduler.schedule(encoded, {value: 30000}))
+    console.log(await scheduler.schedule.sendTransaction(encoded, {
+        from: '0x1cb960969f58a792551c4e8791d643b13025256d',
+        value: 30000
+    }))
 
 }
 

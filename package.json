@@ -21,6 +21,7 @@
   "homepage": "https://github.com/chronologic/Timenode-v2#readme",
   "dependencies": {
     "ethers": "^3.0.9",
-    "ipfs": "^0.28.2"
+    "ipfs": "^0.28.2",
+    "web3": "^0.20.6"
   }
 }
