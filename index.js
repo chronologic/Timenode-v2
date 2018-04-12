@@ -43,7 +43,7 @@ const main = async () => {
         callData,
     )
 
-    const scheduler = Scheduler.boot('0x0f06cc8d999a2b99ca458bdaf5ea0fbd668f9533')
+    const scheduler = Scheduler.boot('0x53cddf951a46e824962929cc31664c266ec3b96d')
 
     // console.log(scheduler.schedule)
 

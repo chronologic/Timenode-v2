@@ -5,6 +5,8 @@ const web3 = new Web3(provider)
 
 const { getABI } = require('./utils')
 
+const b58 = require('base-58')
+
 const Timenode = function() {}
 
 Timenode.boot = (address) => {
@@ -29,6 +31,7 @@ Timenode.prototype.subscribeTo = function (schedulerAddr) {
     event.watch((err, res) => {
         if (!err) {
             const newTransaction = res.args.newTransaction
+            // console.log(newTransaction)
             console.log(
                 process(newTransaction)
             )
@@ -39,12 +42,13 @@ Timenode.prototype.subscribeTo = function (schedulerAddr) {
 const process = (newTransaction) => {
     const abi = getABI('ScheduledTransaction')
     const newTx = web3.eth.contract(abi).at(newTransaction)
-    return newTx.ipfsHash()
+    const hash = newTx.ipfsHash()
+    return b58.encode(Buffer.from('1220' + hash.slice(2), 'hex'))
 }
 
 const main = async () => {
-    const scheduler = '0x0f06cc8d999a2b99ca458bdaf5ea0fbd668f9533'
-    const eventE = '0x199337fe98a52daa3be7664e585649f089d2cac3'
+    const scheduler = '0x53cddf951a46e824962929cc31664c266ec3b96d'
+    const eventE = '0x2570e660d37e5678a0a843c034ad699ff2af8a6b'
     const timenode = Timenode.boot(eventE)
 
     timenode.subscribeTo(scheduler)
