@@ -58,7 +58,7 @@ Serializer.encode = (
 Serializer.decode = (
     bytesString
 ) => {
-    const decodedTx = ethCoder.decode(
+    const decoded = ethCoder.decode(
         [
             'address',
             'uint256',
@@ -74,7 +74,7 @@ Serializer.decode = (
 
     const tempUnit = bytesString.slice(2,6) == '0001' ? 1 : 2
     const retData = {
-        temporalUnit: decodedTemporalUnit,
+        temporalUnit: tempUnit,
         recipient: decoded[0],
         value: decoded[1].toNumber(),
         callGas: decoded[2].toNumber(),

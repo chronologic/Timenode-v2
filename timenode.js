@@ -6,6 +6,7 @@ const provider = new Web3.providers.HttpProvider("http://localhost:8545")
 const web3 = new Web3(provider)
 
 const { getABI } = require('./utils')
+const Serializer = require('./serializer')
 
 const Timenode = function() {}
 
@@ -37,12 +38,30 @@ Timenode.prototype.subscribeTo = function (schedulerAddr) {
                 this.store = {}
             }
             this.store[newTransaction] = bytes
+            const data = this.parseBytes(bytes)
+            console.log(data)
         }
     })
 }
 
+Timenode.prototype.parseBytes = function(bytes) {
+    const data = Serializer.decode(bytes)
+    return data
+}
+
+Timenode.prototype.route = function(transactionAddress) {}
+
 Timenode.prototype.getStore = function() {
     return this.store
+}
+
+Timenode.prototype.getBytes = function(transactionAddress) {
+    const b = this.store[transactionAddress]
+    if (!b) {
+        throw new Error(`No entry for address ${transactionAddress}`)
+    } else {
+        return b
+    }
 }
 
 const ScheduledTransaction = function() {}
@@ -55,16 +74,16 @@ ScheduledTransaction.at = function(address) {
     return sT
 }
 
-ScheduledTransaction.prototype.getIpfsHash = function() {
-    this.checkInstantiated()
-    const h = this.instance.ipfsHash()
-    return b58.encode(Buffer.from('1220' + h.slice(2), 'hex'))
-}
-
 ScheduledTransaction.prototype.checkInstantiated = function() {
     if (!this.instance) {
         throw new Error('Not instantiated!')
     }
+}
+
+ScheduledTransaction.prototype.getIpfsHash = function() {
+    this.checkInstantiated()
+    const h = this.instance.ipfsHash()
+    return b58.encode(Buffer.from('1220' + h.slice(2), 'hex'))
 }
 
 const main = async () => {
@@ -83,4 +102,3 @@ const main = async () => {
 }
 
 main()
-
