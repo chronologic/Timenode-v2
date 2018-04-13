@@ -44,12 +44,33 @@ Timenode.prototype.subscribeTo = function (schedulerAddr) {
     })
 }
 
-Timenode.prototype.parseBytes = function(bytes) {
-    const data = Serializer.decode(bytes)
-    return data
-}
+Timenode.prototype.route = function(transactionAddress) {
+    const transactions = Object.keys(this.store)
+    transactions.forEach((transaction) => {
+        const sT = ScheduledTransaction.at(transaction)
+        const bytes = this.getBytes(transaction)
+        const data = this.parseBytes(bytes)
 
-Timenode.prototype.route = function(transactionAddress) {}
+        const curBlock = web3.eth.blockNumber
+        if (data.executionWindowStart >= curBlock) {
+            if (sT.executed()) {
+                // log something
+                return
+            }
+            //execute
+            sT.execute.sendTransaction(
+                bytes,
+                {
+                    callGas: data.callGas + 180000,
+                    gasPrice: data.gasPrice,
+                }
+            )
+        } else {
+            //TODO better logging
+            return
+        }
+    })
+}
 
 Timenode.prototype.getStore = function() {
     return this.store
@@ -62,6 +83,11 @@ Timenode.prototype.getBytes = function(transactionAddress) {
     } else {
         return b
     }
+}
+
+Timenode.prototype.parseBytes = function(bytes) {
+    const data = Serializer.decode(bytes)
+    return data
 }
 
 const ScheduledTransaction = function() {}
