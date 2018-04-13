@@ -47,7 +47,7 @@ Timenode.prototype.subscribeTo = function (schedulerAddr) {
 Timenode.prototype.route = function() {
     if (!this.store) return
     const transactions = Object.keys(this.store)
-    transactions.forEach((transaction) => {
+    transactions.forEach(async (transaction) => {
         const sT = ScheduledTransaction.at(transaction)
         const bytes = this.getBytes(transaction)
         const data = this.parseBytes(bytes)
@@ -61,13 +61,21 @@ Timenode.prototype.route = function() {
                 return
             }
             //execute
+            if (await hasPendingParity(transaction)) {
+                console.log('pending tx in transaction pool')
+                return
+            }
             // console.log(bytes)
             sT.instance.execute.sendTransaction(
                 bytes,
                 {
                     from: '0x1cb960969f58a792551c4e8791d643b13025256d',
-                    gas: data.callGas + 180000,
+                    gas: data.callGas + 180000 + 100000,
                     gasPrice: data.gasPrice,
+                }, (err,res) => {
+                    if (!err) {
+                        console.log(res)
+                    }
                 }
             )
         } else {
@@ -76,6 +84,26 @@ Timenode.prototype.route = function() {
         }
     })
 }
+
+const hasPendingParity = async (txRequest) => {
+    const provider = web3.currentProvider
+  
+    return new Promise((resolve, reject) => {
+      provider.sendAsync(
+        {
+          jsonrpc: '2.0',
+          method: 'parity_pendingTransactions',
+          params: [],
+          id: 0o7,
+        },
+        (err, res) => {
+          if (err) reject(err)
+          const hasTx = res && res.result && !!res.result.filter(tx => tx.to === txRequest).length
+          resolve(hasTx)
+        }
+      )
+    })
+  }
 
 Timenode.prototype.getStore = function() {
     return this.store
