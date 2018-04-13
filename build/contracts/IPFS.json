@@ -860,7 +860,7 @@
                       "name": "sha256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4438,
+                      "referencedDeclaration": 4270,
                       "src": "992:6:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_sha256_pure$__$returns$_t_bytes32_$",
@@ -4226,7 +4226,7 @@
                       "name": "sha256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 4438,
+                      "referencedDeclaration": 4270,
                       "src": "992:6:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_sha256_pure$__$returns$_t_bytes32_$",
@@ -6843,7 +6843,14 @@
     "name": "solc",
     "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0xbddbf5a8ee7b2f542c4cac6357c6a0b62a1ef58e",
+      "transactionHash": "0x4498ee34810aadf86c4198c285afa3231e3e89728188fe6719976ab518553d27"
+    }
+  },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-12T19:32:14.394Z"
+  "updatedAt": "2018-04-13T08:18:21.278Z"
 }

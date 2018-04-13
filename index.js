@@ -43,7 +43,8 @@ const main = async () => {
         callData,
     )
 
-    const scheduler = Scheduler.boot('0xdacbc2af0c96296e875a88b14ca0bac42d88f186')
+    const addr = require('./build/a.json')
+    const scheduler = Scheduler.boot(addr.scheduler)
 
     // console.log(scheduler.schedule)
 

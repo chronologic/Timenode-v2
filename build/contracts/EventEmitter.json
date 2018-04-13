@@ -271,7 +271,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4431,
+                          "referencedDeclaration": 4263,
                           "src": "959:3:12",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -670,7 +670,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4431,
+                          "referencedDeclaration": 4263,
                           "src": "959:3:12",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -859,7 +859,14 @@
     "name": "solc",
     "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0xf4fbdecf50a02b602a3b3ada5771b3aa1fc8e105",
+      "transactionHash": "0x6c5d670db6b23443352b1e6c2eac4f9914df3c3983b54794d2c551ff19a65395"
+    }
+  },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-12T19:32:14.394Z"
+  "updatedAt": "2018-04-13T08:18:21.268Z"
 }
