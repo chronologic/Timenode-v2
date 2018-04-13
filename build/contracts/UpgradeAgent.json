@@ -53,9 +53,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.13;\n\n/**\n * Upgrade agent interface inspired by Lunyr.\n *\n * Upgrade agent transfers tokens to a new contract.\n * Upgrade agent itself can be the token contract, or just a middle man contract doing the heavy lifting.\n */\ncontract UpgradeAgent {\n  uint public originalSupply;\n  /** Interface marker */\n  function isUpgradeAgent() public constant returns (bool) {\n    return true;\n  }\n  function upgradeFrom(address _from, uint256 _value) public;\n}\n",
-  "sourcePath": "/home/logan/Work/EAC-v2/chronologic/contracts/UpgradeAgent.sol",
+  "sourcePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/UpgradeAgent.sol",
   "ast": {
-    "absolutePath": "/home/logan/Work/EAC-v2/chronologic/contracts/UpgradeAgent.sol",
+    "absolutePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/UpgradeAgent.sol",
     "exportedSymbols": {
       "UpgradeAgent": [
         2816
@@ -290,7 +290,7 @@
     "src": "0:468:8"
   },
   "legacyAST": {
-    "absolutePath": "/home/logan/Work/EAC-v2/chronologic/contracts/UpgradeAgent.sol",
+    "absolutePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/UpgradeAgent.sol",
     "exportedSymbols": {
       "UpgradeAgent": [
         2816
@@ -530,5 +530,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-11T09:37:10.402Z"
+  "updatedAt": "2018-04-12T19:32:14.391Z"
 }

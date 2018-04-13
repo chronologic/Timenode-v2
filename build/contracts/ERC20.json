@@ -180,9 +180,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.13;\nimport './ERC20Basic.sol';\n/**\n * @title ERC20 interface\n * @dev see https://github.com/ethereum/EIPs/issues/20\n */\ncontract ERC20 is ERC20Basic {\n  function allowance(address _owner, address _spender) constant returns (uint remaining);\n  function transferFrom(address _from, address _to, uint _value) returns (bool success);\n  function approve(address _spender, uint _value) returns (bool success);\n  event Approval(address indexed _owner, address indexed _spender, uint _value);\n}\n",
-  "sourcePath": "/home/logan/Work/EAC-v2/chronologic/contracts/ERC20.sol",
+  "sourcePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/ERC20.sol",
   "ast": {
-    "absolutePath": "/home/logan/Work/EAC-v2/chronologic/contracts/ERC20.sol",
+    "absolutePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         2122
@@ -203,7 +203,7 @@
         "src": "0:24:1"
       },
       {
-        "absolutePath": "/home/logan/Work/EAC-v2/chronologic/contracts/ERC20Basic.sol",
+        "absolutePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/ERC20Basic.sol",
         "file": "./ERC20Basic.sol",
         "id": 2082,
         "nodeType": "ImportDirective",
@@ -705,7 +705,7 @@
     "src": "0:508:1"
   },
   "legacyAST": {
-    "absolutePath": "/home/logan/Work/EAC-v2/chronologic/contracts/ERC20.sol",
+    "absolutePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         2122
@@ -726,7 +726,7 @@
         "src": "0:24:1"
       },
       {
-        "absolutePath": "/home/logan/Work/EAC-v2/chronologic/contracts/ERC20Basic.sol",
+        "absolutePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/ERC20Basic.sol",
         "file": "./ERC20Basic.sol",
         "id": 2082,
         "nodeType": "ImportDirective",
@@ -1233,5 +1233,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-11T09:37:10.396Z"
+  "updatedAt": "2018-04-12T19:32:14.387Z"
 }
