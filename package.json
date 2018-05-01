@@ -1,7 +1,7 @@
 {
-  "name": "timenode-v2",
-  "version": "1.0.0",
-  "description": "Timenode that works with IPFS.",
+  "name": "timenode",
+  "version": "0.0.1",
+  "description": "The Chronos timenode.",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chronologic/Timenode-v2.git"
+    "url": "git+https://github.com/chronologic/timenode.git"
   },
   "author": "lsaether",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chronologic/Timenode-v2/issues"
+    "url": "https://github.com/chronologic/timenode/issues"
   },
-  "homepage": "https://github.com/chronologic/Timenode-v2#readme",
+  "homepage": "https://github.com/chronologic/timenode#readme",
   "dependencies": {
     "base-58": "0.0.1",
     "ethers": "^3.0.9",
