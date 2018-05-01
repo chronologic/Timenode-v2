@@ -53,22 +53,22 @@
   ],
   "bytecode": "0x6060604052341561000f57600080fd5b6102108061001e6000396000f300606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063eb0d633014610046575b600080fd5b341561005157600080fd5b6100df600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506100e1565b005b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f94c6f2d01cc82df9dceeabfd7786c57a01cd9796e7cab146d2d0cf5c8380310d8585604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101a4578082015181840152602081019050610189565b50505050905090810190601f1680156101d15780820380516001836020036101000a031916815260200191505b50935050505060405180910390a35050505600a165627a7a72305820041391ec443a7a79e4954a6b3631543f4a61a1b529751238ce0af0366b92d8a50029",
   "deployedBytecode": "0x606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063eb0d633014610046575b600080fd5b341561005157600080fd5b6100df600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506100e1565b005b3373ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f94c6f2d01cc82df9dceeabfd7786c57a01cd9796e7cab146d2d0cf5c8380310d8585604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200180602001828103825283818151815260200191508051906020019080838360005b838110156101a4578082015181840152602081019050610189565b50505050905090810190601f1680156101d15780820380516001836020036101000a031916815260200191505b50935050505060405180910390a35050505600a165627a7a72305820041391ec443a7a79e4954a6b3631543f4a61a1b529751238ce0af0366b92d8a50029",
-  "sourceMap": "26:1497:12:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "26:1497:12:-;;;;;;;;;;;;;;;;;;;;;;;;537:440;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;959:10;886:84;;945:12;886:84;;;910:15;927:16;886:84;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;886:84:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;537:440;;;:::o",
+  "sourceMap": "26:1497:15:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:1497:15:-;;;;;;;;;;;;;;;;;;;;;;;;537:440;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;959:10;886:84;;945:12;886:84;;;910:15;927:16;886:84;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;886:84:15;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;537:440;;;:::o",
   "source": "pragma solidity ^0.4.19;\n\ncontract EventEmitter {\n    event NewTransactionScheduled(address newTransaction, bytes serializedBytes, address indexed scheduledBy, address indexed scheduledFrom);\n    // event Parameters(\n    //     bytes2 temporalUnit,\n    //     address recipient,\n    //     uint256 value,\n    //     uint256 callGas,\n    //     uint256 gasPrice,\n    //     uint256 executionWindowStart,\n    //     uint256 executionWindowLength,\n    //     uint256 bounty,\n    //     uint256 fee,\n    //     bytes callData\n    // );\n\n    function logNewTransactionScheduled(\n        address _newTransaction,\n        bytes _serializedBytes,\n        address _scheduledBy\n    )\n        public\n    {\n        // This will log the `msg.sender` as the last indexed address so that TimeNodes can filter by where\n        // the event originated from. Tries to mitigate spam attacks.\n        emit NewTransactionScheduled(_newTransaction, _serializedBytes, _scheduledBy, msg.sender);\n    }\n\n    // function logParameters(\n    //     bytes2 _temporalUnit,\n    //     address _recipient,\n    //     uint256 _value,\n    //     uint256 _callGas,\n    //     uint256 _gasPrice,\n    //     uint256 _executionWindowStart,\n    //     uint256 _executionWindowLength,\n    //     uint256 _bounty,\n    //     uint256 _fee,\n    //     bytes _callData\n    // )\n    //     public\n    // {\n    //     Parameters(_temporalUnit, _recipient, _value, _callGas, _gasPrice, _executionWindowStart, _executionWindowLength, _bounty, _fee, _callData);\n    // }\n}",
   "sourcePath": "/home/logan/Work/v2/EAC-v2/contracts/EventEmitter.sol",
   "ast": {
     "absolutePath": "/home/logan/Work/v2/EAC-v2/contracts/EventEmitter.sol",
     "exportedSymbols": {
       "EventEmitter": [
-        3367
+        3704
       ]
     },
-    "id": 3368,
+    "id": 3705,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3338,
+        "id": 3675,
         "literals": [
           "solidity",
           "^",
@@ -76,7 +76,7 @@
           ".19"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:12"
+        "src": "0:24:15"
       },
       {
         "baseContracts": [],
@@ -84,9 +84,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 3367,
+        "id": 3704,
         "linearizedBaseContracts": [
-          3367
+          3704
         ],
         "name": "EventEmitter",
         "nodeType": "ContractDefinition",
@@ -94,21 +94,21 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3348,
+            "id": 3685,
             "name": "NewTransactionScheduled",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3347,
+              "id": 3684,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3340,
+                  "id": 3677,
                   "indexed": false,
                   "name": "newTransaction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3348,
-                  "src": "84:22:12",
+                  "scope": 3685,
+                  "src": "84:22:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -116,10 +116,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3339,
+                    "id": 3676,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "84:7:12",
+                    "src": "84:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -130,12 +130,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3342,
+                  "id": 3679,
                   "indexed": false,
                   "name": "serializedBytes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3348,
-                  "src": "108:21:12",
+                  "scope": 3685,
+                  "src": "108:21:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -143,10 +143,10 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 3341,
+                    "id": 3678,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "108:5:12",
+                    "src": "108:5:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes storage pointer"
@@ -157,12 +157,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3344,
+                  "id": 3681,
                   "indexed": true,
                   "name": "scheduledBy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3348,
-                  "src": "131:27:12",
+                  "scope": 3685,
+                  "src": "131:27:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -170,10 +170,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3343,
+                    "id": 3680,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "131:7:12",
+                    "src": "131:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -184,12 +184,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3346,
+                  "id": 3683,
                   "indexed": true,
                   "name": "scheduledFrom",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3348,
-                  "src": "160:29:12",
+                  "scope": 3685,
+                  "src": "160:29:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -197,10 +197,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3345,
+                    "id": 3682,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "160:7:12",
+                    "src": "160:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -210,15 +210,15 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "83:107:12"
+              "src": "83:107:15"
             },
-            "src": "54:137:12"
+            "src": "54:137:15"
           },
           {
             "body": {
-              "id": 3365,
+              "id": 3702,
               "nodeType": "Block",
-              "src": "693:284:12",
+              "src": "693:284:15",
               "statements": [
                 {
                   "eventCall": {
@@ -226,12 +226,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 3358,
+                        "id": 3695,
                         "name": "_newTransaction",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3350,
-                        "src": "910:15:12",
+                        "referencedDeclaration": 3687,
+                        "src": "910:15:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -239,12 +239,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 3359,
+                        "id": 3696,
                         "name": "_serializedBytes",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3352,
-                        "src": "927:16:12",
+                        "referencedDeclaration": 3689,
+                        "src": "927:16:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
@@ -252,12 +252,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 3360,
+                        "id": 3697,
                         "name": "_scheduledBy",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3354,
-                        "src": "945:12:12",
+                        "referencedDeclaration": 3691,
+                        "src": "945:12:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -267,18 +267,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 3361,
+                          "id": 3698,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4416,
-                          "src": "959:3:12",
+                          "referencedDeclaration": 5156,
+                          "src": "959:3:15",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 3362,
+                        "id": 3699,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -286,7 +286,7 @@
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "959:10:12",
+                        "src": "959:10:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -312,18 +312,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 3357,
+                      "id": 3694,
                       "name": "NewTransactionScheduled",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3348,
-                      "src": "886:23:12",
+                      "referencedDeclaration": 3685,
+                      "src": "886:23:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bytes_memory_ptr_$_t_address_$_t_address_$returns$__$",
                         "typeString": "function (address,bytes memory,address,address)"
                       }
                     },
-                    "id": 3363,
+                    "id": 3700,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -331,20 +331,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "886:84:12",
+                    "src": "886:84:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3364,
+                  "id": 3701,
                   "nodeType": "EmitStatement",
-                  "src": "881:89:12"
+                  "src": "881:89:15"
                 }
               ]
             },
             "documentation": null,
-            "id": 3366,
+            "id": 3703,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -352,16 +352,16 @@
             "name": "logNewTransactionScheduled",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3355,
+              "id": 3692,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3350,
+                  "id": 3687,
                   "name": "_newTransaction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3366,
-                  "src": "582:23:12",
+                  "scope": 3703,
+                  "src": "582:23:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -369,10 +369,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3349,
+                    "id": 3686,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "582:7:12",
+                    "src": "582:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -383,11 +383,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3352,
+                  "id": 3689,
                   "name": "_serializedBytes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3366,
-                  "src": "615:22:12",
+                  "scope": 3703,
+                  "src": "615:22:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -395,10 +395,10 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 3351,
+                    "id": 3688,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "615:5:12",
+                    "src": "615:5:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes storage pointer"
@@ -409,11 +409,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3354,
+                  "id": 3691,
                   "name": "_scheduledBy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3366,
-                  "src": "647:20:12",
+                  "scope": 3703,
+                  "src": "647:20:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -421,10 +421,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3353,
+                    "id": 3690,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "647:7:12",
+                    "src": "647:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -434,40 +434,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "572:101:12"
+              "src": "572:101:15"
             },
             "payable": false,
             "returnParameters": {
-              "id": 3356,
+              "id": 3693,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "693:0:12"
+              "src": "693:0:15"
             },
-            "scope": 3367,
-            "src": "537:440:12",
+            "scope": 3704,
+            "src": "537:440:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 3368,
-        "src": "26:1497:12"
+        "scope": 3705,
+        "src": "26:1497:15"
       }
     ],
-    "src": "0:1523:12"
+    "src": "0:1523:15"
   },
   "legacyAST": {
     "absolutePath": "/home/logan/Work/v2/EAC-v2/contracts/EventEmitter.sol",
     "exportedSymbols": {
       "EventEmitter": [
-        3367
+        3704
       ]
     },
-    "id": 3368,
+    "id": 3705,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3338,
+        "id": 3675,
         "literals": [
           "solidity",
           "^",
@@ -475,7 +475,7 @@
           ".19"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:12"
+        "src": "0:24:15"
       },
       {
         "baseContracts": [],
@@ -483,9 +483,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 3367,
+        "id": 3704,
         "linearizedBaseContracts": [
-          3367
+          3704
         ],
         "name": "EventEmitter",
         "nodeType": "ContractDefinition",
@@ -493,21 +493,21 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3348,
+            "id": 3685,
             "name": "NewTransactionScheduled",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3347,
+              "id": 3684,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3340,
+                  "id": 3677,
                   "indexed": false,
                   "name": "newTransaction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3348,
-                  "src": "84:22:12",
+                  "scope": 3685,
+                  "src": "84:22:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -515,10 +515,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3339,
+                    "id": 3676,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "84:7:12",
+                    "src": "84:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -529,12 +529,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3342,
+                  "id": 3679,
                   "indexed": false,
                   "name": "serializedBytes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3348,
-                  "src": "108:21:12",
+                  "scope": 3685,
+                  "src": "108:21:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -542,10 +542,10 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 3341,
+                    "id": 3678,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "108:5:12",
+                    "src": "108:5:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes storage pointer"
@@ -556,12 +556,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3344,
+                  "id": 3681,
                   "indexed": true,
                   "name": "scheduledBy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3348,
-                  "src": "131:27:12",
+                  "scope": 3685,
+                  "src": "131:27:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -569,10 +569,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3343,
+                    "id": 3680,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "131:7:12",
+                    "src": "131:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -583,12 +583,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3346,
+                  "id": 3683,
                   "indexed": true,
                   "name": "scheduledFrom",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3348,
-                  "src": "160:29:12",
+                  "scope": 3685,
+                  "src": "160:29:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -596,10 +596,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3345,
+                    "id": 3682,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "160:7:12",
+                    "src": "160:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -609,15 +609,15 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "83:107:12"
+              "src": "83:107:15"
             },
-            "src": "54:137:12"
+            "src": "54:137:15"
           },
           {
             "body": {
-              "id": 3365,
+              "id": 3702,
               "nodeType": "Block",
-              "src": "693:284:12",
+              "src": "693:284:15",
               "statements": [
                 {
                   "eventCall": {
@@ -625,12 +625,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 3358,
+                        "id": 3695,
                         "name": "_newTransaction",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3350,
-                        "src": "910:15:12",
+                        "referencedDeclaration": 3687,
+                        "src": "910:15:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -638,12 +638,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 3359,
+                        "id": 3696,
                         "name": "_serializedBytes",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3352,
-                        "src": "927:16:12",
+                        "referencedDeclaration": 3689,
+                        "src": "927:16:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
@@ -651,12 +651,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 3360,
+                        "id": 3697,
                         "name": "_scheduledBy",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3354,
-                        "src": "945:12:12",
+                        "referencedDeclaration": 3691,
+                        "src": "945:12:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -666,18 +666,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 3361,
+                          "id": 3698,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4416,
-                          "src": "959:3:12",
+                          "referencedDeclaration": 5156,
+                          "src": "959:3:15",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 3362,
+                        "id": 3699,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -685,7 +685,7 @@
                         "memberName": "sender",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "959:10:12",
+                        "src": "959:10:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -711,18 +711,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 3357,
+                      "id": 3694,
                       "name": "NewTransactionScheduled",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3348,
-                      "src": "886:23:12",
+                      "referencedDeclaration": 3685,
+                      "src": "886:23:15",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bytes_memory_ptr_$_t_address_$_t_address_$returns$__$",
                         "typeString": "function (address,bytes memory,address,address)"
                       }
                     },
-                    "id": 3363,
+                    "id": 3700,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -730,20 +730,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "886:84:12",
+                    "src": "886:84:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3364,
+                  "id": 3701,
                   "nodeType": "EmitStatement",
-                  "src": "881:89:12"
+                  "src": "881:89:15"
                 }
               ]
             },
             "documentation": null,
-            "id": 3366,
+            "id": 3703,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -751,16 +751,16 @@
             "name": "logNewTransactionScheduled",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3355,
+              "id": 3692,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3350,
+                  "id": 3687,
                   "name": "_newTransaction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3366,
-                  "src": "582:23:12",
+                  "scope": 3703,
+                  "src": "582:23:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -768,10 +768,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3349,
+                    "id": 3686,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "582:7:12",
+                    "src": "582:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -782,11 +782,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3352,
+                  "id": 3689,
                   "name": "_serializedBytes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3366,
-                  "src": "615:22:12",
+                  "scope": 3703,
+                  "src": "615:22:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -794,10 +794,10 @@
                     "typeString": "bytes memory"
                   },
                   "typeName": {
-                    "id": 3351,
+                    "id": 3688,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "615:5:12",
+                    "src": "615:5:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes storage pointer"
@@ -808,11 +808,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3354,
+                  "id": 3691,
                   "name": "_scheduledBy",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3366,
-                  "src": "647:20:12",
+                  "scope": 3703,
+                  "src": "647:20:15",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -820,10 +820,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3353,
+                    "id": 3690,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "647:7:12",
+                    "src": "647:7:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -833,27 +833,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "572:101:12"
+              "src": "572:101:15"
             },
             "payable": false,
             "returnParameters": {
-              "id": 3356,
+              "id": 3693,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "693:0:12"
+              "src": "693:0:15"
             },
-            "scope": 3367,
-            "src": "537:440:12",
+            "scope": 3704,
+            "src": "537:440:15",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 3368,
-        "src": "26:1497:12"
+        "scope": 3705,
+        "src": "26:1497:15"
       }
     ],
-    "src": "0:1523:12"
+    "src": "0:1523:15"
   },
   "compiler": {
     "name": "solc",
@@ -863,10 +863,10 @@
     "42": {
       "events": {},
       "links": {},
-      "address": "0x93965574899fb334ef3afea9287a29f4e7dae02a",
-      "transactionHash": "0xcad3c2e8546a564560deac81ac58606ba0f4c1e7b601c85e66a43316352db856"
+      "address": "0x5856d86ca2e32955b5c0a7c8a416d6aba763b2e2",
+      "transactionHash": "0x848a34d2eaf7cc90436d4a78d2eadce87984a5aaead48f235840451c105a2cc2"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-13T10:24:25.386Z"
+  "updatedAt": "2018-05-01T14:03:16.871Z"
 }

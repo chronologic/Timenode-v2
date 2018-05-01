@@ -10,11 +10,14 @@ const Serializer = require('./serializer')
 
 const Timenode = function() {}
 
+/**
+ * The constructor function for a new instance of the Timenode class.
+ * @param {String} address The Ethereum address of the EventEmitter contract. 
+ */
 Timenode.boot = (address) => {
     const abi = getABI('EventEmitter')
 
     const timenode = new Timenode()
-
     timenode.eventEmitter = web3.eth.contract(abi).at(
         address,
     )
@@ -22,7 +25,7 @@ Timenode.boot = (address) => {
     return timenode
 }
 
-Timenode.prototype.subscribeTo = function (schedulerAddr) {
+Timenode.prototype.subscribeTo = function(scheduler) {
     if (!this.eventEmitter) {
         throw new Error('Must instantiate the Timenode with the address of the EventEmitter contract!!')
     }
@@ -57,7 +60,7 @@ Timenode.prototype.route = function() {
             // console.log(data.executionWindowStart)
             // console.log(curBlock)
             if (sT.instance.executed()) {
-                // log something
+                console.log(sT.instance.executed())
                 return
             }
             //execute
