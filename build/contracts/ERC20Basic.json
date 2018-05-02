@@ -85,9 +85,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.13;\n/**\n * @title ERC20Basic\n * @dev Simpler version of ERC20 interface\n * @dev see https://github.com/ethereum/EIPs/issues/20\n */\ncontract ERC20Basic {\n  uint public totalSupply;\n  function balanceOf(address _owner) constant returns (uint balance);\n  function transfer(address _to, uint _value) returns (bool success);\n  event Transfer(address indexed _from, address indexed _to, uint _value);\n}",
-  "sourcePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/ERC20Basic.sol",
+  "sourcePath": "/home/logan/Work/v2/chronos/chronologic/contracts/ERC20Basic.sol",
   "ast": {
-    "absolutePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/ERC20Basic.sol",
+    "absolutePath": "/home/logan/Work/v2/chronos/chronologic/contracts/ERC20Basic.sol",
     "exportedSymbols": {
       "ERC20Basic": [
         2151
@@ -442,7 +442,7 @@
     "src": "0:417:2"
   },
   "legacyAST": {
-    "absolutePath": "/home/logan/Work/v2/EAC-v2/chronologic/contracts/ERC20Basic.sol",
+    "absolutePath": "/home/logan/Work/v2/chronos/chronologic/contracts/ERC20Basic.sol",
     "exportedSymbols": {
       "ERC20Basic": [
         2151
@@ -802,5 +802,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-01T14:02:31.387Z"
+  "updatedAt": "2018-05-02T07:10:36.862Z"
 }

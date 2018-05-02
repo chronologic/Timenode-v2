@@ -1,5 +1,5 @@
 const getABI = (name) => {
-    return require(`./build/contracts/${name}.json`).abi
+    return require(`../build/contracts/${name}.json`).abi
 }
 
 module.exports = {
