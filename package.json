@@ -1,5 +1,5 @@
 {
-  "name": "timenode",
+  "name": "@chronologic/timenode",
   "version": "0.0.1",
   "description": "The Chronos timenode.",
   "main": "index.js",

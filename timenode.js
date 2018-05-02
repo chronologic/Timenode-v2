@@ -25,6 +25,11 @@ Timenode.boot = (address) => {
     return timenode
 }
 
+/**
+ * Subscribe the Timenode to a specific scheduler contract.
+ * @param {String} scheduler The Ethereum address of the Scheduler for which to
+ * subscribe to. 
+ */
 Timenode.prototype.subscribeTo = function(scheduler) {
     if (!this.eventEmitter) {
         throw new Error('Must instantiate the Timenode with the address of the EventEmitter contract!!')
@@ -47,6 +52,10 @@ Timenode.prototype.subscribeTo = function(scheduler) {
     })
 }
 
+/**
+ * Routes the stored transactions (the ones picked up from the subscribeTo() function)
+ * into their action slots.
+ */
 Timenode.prototype.route = function() {
     if (!this.store) return
     const transactions = Object.keys(this.store)
@@ -64,7 +73,7 @@ Timenode.prototype.route = function() {
                 return
             }
             //execute
-            if (await hasPendingParity(transaction)) {
+            if (await hasPendingParity(transaction)) {d
                 console.log('pending tx in transaction pool')
                 return
             }
@@ -88,6 +97,7 @@ Timenode.prototype.route = function() {
     })
 }
 
+// TODO: From eac.js... Keep?
 const hasPendingParity = async (txRequest) => {
     const provider = web3.currentProvider
   
@@ -108,10 +118,19 @@ const hasPendingParity = async (txRequest) => {
     })
   }
 
+/**
+ * Getter function to retrieve the Store object.
+ * @return {Object} Key -> Value store of transaction request addresses to call bytes.
+ */
 Timenode.prototype.getStore = function() {
     return this.store
 }
 
+/**
+ * Getter function to retrieve the call bytes from a scheduled transaction address.
+ * @param {String} transactionAddress The address of the scheduled transaction to
+ * retrieve the bytes of.
+ */
 Timenode.prototype.getBytes = function(transactionAddress) {
     const b = this.store[transactionAddress]
     if (!b) {
@@ -121,6 +140,11 @@ Timenode.prototype.getBytes = function(transactionAddress) {
     }
 }
 
+/**
+ * Function to parse bytes string of transaction data to standard parameters.
+ * @param {String} bytes Hex encoded string of bytes. 
+ * @return {Object} Standard parameters.
+ */
 Timenode.prototype.parseBytes = function(bytes) {
     const data = Serializer.decode(bytes)
     return data
