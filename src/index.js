@@ -4,7 +4,7 @@ const web3 = new Web3(provider)
 
 const { getABI } = require('./utils')
 
-const Serializer = require('./serializer')
+const Serializer = require('./TransactionSerializer')
 
 const Scheduler = function() {}
 

@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "translate": "node_modules/babel-cli/bin/babel-node.js src/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,10 @@
     "ethers": "^3.0.9",
     "ipfs": "^0.28.2",
     "web3": "^0.20.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1"
   }
 }
