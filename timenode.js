@@ -6,7 +6,7 @@ const provider = new Web3.providers.HttpProvider("http://localhost:8545")
 const web3 = new Web3(provider)
 
 const { getABI } = require('./utils')
-const Serializer = require('./serializer')
+const Serializer = require('./TransactionSerializer')
 
 const Timenode = function() {}
 
@@ -150,27 +150,7 @@ Timenode.prototype.parseBytes = function(bytes) {
     return data
 }
 
-const ScheduledTransaction = function() {}
-
-ScheduledTransaction.at = function(address) {
-    const abi = getABI('ScheduledTransaction')
-
-    const sT = new ScheduledTransaction()
-    sT.instance = web3.eth.contract(abi).at(address)
-    return sT
-}
-
-ScheduledTransaction.prototype.checkInstantiated = function() {
-    if (!this.instance) {
-        throw new Error('Not instantiated!')
-    }
-}
-
-ScheduledTransaction.prototype.getIpfsHash = function() {
-    this.checkInstantiated()
-    const h = this.instance.ipfsHash()
-    return b58.encode(Buffer.from('1220' + h.slice(2), 'hex'))
-}
+const ScheduledTransaction = require('ScheduledTransaction')
 
 const main = async () => {
     const addr = require('./build/a.json')
