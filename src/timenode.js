@@ -7,6 +7,7 @@ const web3 = new Web3(provider)
 
 const { getABI } = require('./utils')
 const Serializer = require('./TransactionSerializer')
+const ScheduledTransaction = require('./ScheduledTransaction')
 
 const Timenode = function() {}
 
@@ -35,7 +36,7 @@ Timenode.prototype.subscribeTo = function(scheduler) {
         throw new Error('Must instantiate the Timenode with the address of the EventEmitter contract!!')
     }
 
-    const event = this.eventEmitter.NewTransactionScheduled({scheduledFrom: schedulerAddr})
+    const event = this.eventEmitter.NewTransactionScheduled({scheduledFrom: scheduler})
 
     event.watch((err, res) => {
         if (!err) {
@@ -87,6 +88,9 @@ Timenode.prototype.route = function() {
                 }, (err,res) => {
                     if (!err) {
                         console.log(res)
+                    }
+                    else {
+                        console.log(`Executed! ${res}`)
                     }
                 }
             )
@@ -150,15 +154,15 @@ Timenode.prototype.parseBytes = function(bytes) {
     return data
 }
 
-const ScheduledTransaction = require('ScheduledTransaction')
-
 const main = async () => {
-    const addr = require('./build/a.json')
+    const addr = require('../build/a.json')
     const scheduler = addr.scheduler
     const eventE = addr.eventEmitter
+    console.log('Booting the Timenode...')
     const timenode = Timenode.boot(eventE)
 
     timenode.subscribeTo(scheduler)
+    console.log(`Timenode subscribed to ${scheduler}`)
 
     // Just keep this open.
     setInterval(() => {

@@ -49,7 +49,8 @@ ConditionalDest.new = (opts) => {
 }
 
 const main = async () => {
-    const addressList = require('../build/a.json')
+    // const addressList = require('../build/a.json')
+    const addrList = JSON.parse(require('addr~'))
 
     const me = await new Promise(resolve => {
         web3.eth.getAccounts((err,res) => {
@@ -57,42 +58,47 @@ const main = async () => {
         })
     })
 
-    console.log(me)
+    const conditionalDestination = await ConditionalDest.new({from: me})
 
-    console.log(await ConditionalDest.new({from: me}))
+    const curBlockNum = web3.eth.blockNumber
+    const params = {
+        recipient: '0x7eD1E469fCb3EE19C0366D829e291451bE638E59', //random address from etherscan
+        value: 10,
+        callGas: 20,
+        gasPrice: 30,
+        executionWindowStart: curBlockNum + 30,
+        executionWindowLength: 40,
+        bounty: 60,
+        fee: 70,
+        conditionalDest: conditionalDestination.address,
+        callData: '0x' + '1337'.repeat(7),
+        conditionalCallData: '0x00',
+    }
 
-    // const curBlock = web3.eth.blockNumber
-    // const recipient = '0x7eD1E469fCb3EE19C0366D829e291451bE638E59'
-    // const value = 10
-    // const callGas = 20
-    // const gasPrice = 30
-    // const executionWindowStart = curBlock + 30
-    // const executionWindowLength = 50
-    // const bounty = 60
-    // const fee = 70
-    // const callData = "0x" + "1337".repeat(32)
+    const encoded = Serializer.encode(
+        1,
+        params.recipient,
+        params.value,
+        params.callGas,
+        params.gasPrice,
+        params.executionWindowStart,
+        params.executionWindowLength,
+        params.bounty,
+        params.fee,
+        params.conditionalDest,
+        params.callData,
+        params.conditionalCallData,
+    )
 
-    // const encoded = Serializer.encode(
-    //     1,
-    //     recipient,
-    //     value,
-    //     callGas,
-    //     gasPrice,
-    //     executionWindowStart,
-    //     executionWindowLength,
-    //     bounty,
-    //     fee,
-    //     callData,
-    // )
+    // Boot up the scheduler contract.
+    const scheduler = Scheduler.boot(addrList.scheduler)
 
-    // const scheduler = Scheduler.boot(addressList.scheduler)
+    // console.log(scheduler.schedule)
 
-    // // console.log(scheduler.schedule)
-
-    // console.log(await scheduler.schedule.sendTransaction(encoded, {
-    //     from: '0x1cb960969f58a792551c4e8791d643b13025256d',
-    //     value: 30000
-    // }))
+    console.log(await scheduler.schedule.sendTransaction(encoded, {
+        from: me,
+        value: 30000,
+    }))
 
 }
 

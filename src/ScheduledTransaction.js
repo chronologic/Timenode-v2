@@ -29,4 +29,4 @@ ScheduledTransaction.prototype.getIpfsHash = function() {
     return b58.encode(Buffer.from('1220' + h.slice(2), 'hex'))
 }
 
-module.exports = ScheduledTransactio
+module.exports = ScheduledTransaction
