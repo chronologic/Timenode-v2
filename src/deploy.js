@@ -22,7 +22,7 @@ const getDefaultSender = () => {
             resolve(res[0])
         })
     })
-}h
+}
 
 const main = async () => {
     const me = await getDefaultSender()
@@ -35,9 +35,9 @@ const main = async () => {
         feeRecipient: '0xCCa19CC61a0B6F5B40525FB3d37124D40b877EF6',
         ipfs: Ipfs.address,
         scheduledTxCore: ScheduledTransaction.address,
-    })
+    }))
 
-    fs.writeFileSync('addr~', JSON.stringify({
+    fs.writeFileSync('addr', JSON.stringify({
         EventEmitter: EventEmitter.address,
         Scheduler: Scheduler.address,
     }))
