@@ -37,7 +37,7 @@ const main = async () => {
         scheduledTxCore: ScheduledTransaction.address,
     }))
 
-    fs.writeFileSync('addr', JSON.stringify({
+    fs.writeFileSync('addrList', JSON.stringify({
         EventEmitter: EventEmitter.address,
         Scheduler: Scheduler.address,
     }))

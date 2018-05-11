@@ -9,7 +9,7 @@ const Scheduler = require('Scheduler')
 const Serializer = require('./TransactionSerializer')
 
 const main = async () => {
-    const addrList = JSON.parse(require('addr~'))
+    const addrList = JSON.parse(require('addrList'))
 
     const me = await new Promise(resolve => {
         web3.eth.getAccounts((err,res) => {
