@@ -63,7 +63,7 @@ TransactionSerializer.serialize = (
     )
 }
 
-TransactionSerializer.prototype.deserialize = (byteString) => {
+TransactionSerializer.deserialize = (byteString) => {
     const decoded = coder.decode(
         [
             'uint256',

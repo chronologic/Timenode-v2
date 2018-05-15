@@ -41,7 +41,7 @@ Timenode.prototype.subscribeTo = function(scheduler) {
     const event = this.eventEmitter.NewTransactionScheduled({scheduledFrom: scheduler})
 
     event.watch((err, res) => {
-        console.log(err, res)
+        // console.log(err, res)
         if (!err) {
             const newTransaction = res.args.newTransaction
             const bytes = res.args.serializedBytes
@@ -73,11 +73,11 @@ Timenode.prototype.route = function() {
             // console.log(data.executionWindowStart)
             // console.log(curBlock)
             if (sT.instance.executed()) {
-                console.log(sT.instance.executed())
+                console.log(`Has been executed: ${sT.instance.executed()}`)
                 return
             }
             //execute
-            if (await hasPendingParity(transaction)) {d
+            if (await hasPendingParity(transaction)) {
                 console.log('pending tx in transaction pool')
                 return
             }
@@ -153,7 +153,7 @@ Timenode.prototype.getBytes = function(transactionAddress) {
  * @return {Object} Standard parameters.
  */
 Timenode.prototype.parseBytes = function(bytes) {
-    const data = Serializer.decode(bytes)
+    const data = Serializer.deserialize(bytes)
     return data
 }
 

@@ -21,13 +21,14 @@ const main = async () => {
     const params = {
         recipient: '0x7eD1E469fCb3EE19C0366D829e291451bE638E59', //random address from etherscan
         value: 10,
-        callGas: 20,
+        callGas: 200000,
         gasPrice: 30,
         executionWindowStart: curBlockNum + 30,
         executionWindowLength: 40,
         bounty: 60,
         fee: 70,
-        conditionalDest: conditionalDestination.address,
+        conditionalDest: '0x0000000000000000000000000000000000000000',
+        // conditionalDest: conditionalDestination.address,
         callData: '0x' + '1337'.repeat(7),
         conditionalCallData: '0x00',
     }
@@ -54,7 +55,7 @@ const main = async () => {
     console.log('sending transaction...')
     await scheduler.schedule.sendTransaction(encoded, {
         from: me,
-        value: 30000,
+        value: web3.toWei('50', 'gwei'),
     })
 
 }
