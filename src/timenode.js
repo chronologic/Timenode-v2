@@ -9,6 +9,8 @@ const Util = require('./utils')
 const Serializer = require('./TransactionSerializer')
 const ScheduledTransaction = require('./ScheduledTransaction')
 
+const NULL_ADDR = '0x0000000000000000000000000000000000000000'
+
 const Timenode = function() {}
 
 /**
@@ -70,33 +72,51 @@ Timenode.prototype.route = function() {
 
         const curBlock = web3.eth.blockNumber
         if (data.executionWindowStart <= curBlock) {
-            // console.log(data.executionWindowStart)
-            // console.log(curBlock)
+
             if (sT.instance.executed()) {
                 console.log(`Has been executed: ${sT.instance.executed()}`)
                 return
             }
-            //execute
-            if (await hasPendingParity(transaction)) {
-                console.log('pending tx in transaction pool')
-                return
-            }
-            // console.log(bytes)
-            sT.instance.execute.sendTransaction(
-                bytes,
-                {
-                    from: this.sender,
-                    gas: data.callGas + 180000 + 100000,
-                    gasPrice: data.gasPrice,
-                }, (err,res) => {
-                    if (!err) {
-                        console.log(res)
-                    }
-                    else {
-                        console.log(`Executed! ${res}`)
-                    }
+
+            const doExecute = () => {
+                if (await hasPendingParity(transaction)) {
+                    console.log('pending tx in transaction pool')
+                    return
                 }
-            )
+                sT.instance.execute.sendTransaction(
+                    bytes,
+                    {
+                        from: this.sender,
+                        gas: data.callGas + 180000 + 100000,
+                        gasPrice: data.gasPrice,
+                    }, (err,res) => {
+                        if (!err) {
+                            console.log(res)
+                        }
+                        else {
+                            console.log(`Executed! ${res}`)
+                        }
+                    }
+                )
+            }
+
+            /** If there is no conditionalDest, this is a simple 
+             * temporal-based call and we can route directly to
+             * execution.
+             */
+            if (data.conditionalDest === NULL_ADDR) {
+                doExecute()
+            } else {
+                /**
+                 * Otherwise we need to start polling to see if
+                 * the conditional value returns true before
+                 * sending an exeuction attempt.
+                 */
+                setInterval(() => {
+                    const canExecute = sT.instance.canExecute(bytes)
+                    console.log(canExecute)
+                }, 1200)
+            }
         } else {
             //TODO better logging
             return
