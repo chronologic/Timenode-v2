@@ -2,14 +2,12 @@ const Web3 = require('web3')
 const provider = new Web3.providers.HttpProvider("http://localhost:8545")
 const web3 = new Web3(provider)
 
-const { getABI } = require('./utils')
-
 const ConditionalDest = require('./ConditionalDest')
-const Scheduler = require('Scheduler')
+const Scheduler = require('./Scheduler')
 const Serializer = require('./TransactionSerializer')
 
 const main = async () => {
-    const addrList = JSON.parse(require('addrList'))
+    const addrList = require('../build/a.json')
 
     const me = await new Promise(resolve => {
         web3.eth.getAccounts((err,res) => {
@@ -17,7 +15,7 @@ const main = async () => {
         })
     })
 
-    const conditionalDestination = await ConditionalDest.new({from: me})
+    const conditionalDestination = await ConditionalDest.new({from: me,gas: 3000000})
 
     const curBlockNum = web3.eth.blockNumber
     const params = {
@@ -34,7 +32,7 @@ const main = async () => {
         conditionalCallData: '0x00',
     }
 
-    const encoded = Serializer.encode(
+    const encoded = Serializer.serialize(
         1,
         params.recipient,
         params.value,
@@ -50,12 +48,14 @@ const main = async () => {
     )
 
     // Boot up the scheduler contract.
+    console.log(`Scheduler at address ${addrList.scheduler}`)
     const scheduler = Scheduler.boot(addrList.scheduler)
 
-    console.log(await scheduler.schedule.sendTransaction(encoded, {
+    console.log('sending transaction...')
+    await scheduler.schedule.sendTransaction(encoded, {
         from: me,
         value: 30000,
-    }))
+    })
 
 }
 

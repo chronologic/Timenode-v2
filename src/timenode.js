@@ -5,7 +5,7 @@ const Web3 = require('web3')
 const provider = new Web3.providers.HttpProvider("http://localhost:8545")
 const web3 = new Web3(provider)
 
-const { getABI } = require('./utils')
+const Util = require('./utils')
 const Serializer = require('./TransactionSerializer')
 const ScheduledTransaction = require('./ScheduledTransaction')
 
@@ -15,13 +15,15 @@ const Timenode = function() {}
  * The constructor function for a new instance of the Timenode class.
  * @param {String} address The Ethereum address of the EventEmitter contract. 
  */
-Timenode.boot = (address) => {
-    const abi = getABI('EventEmitter')
+Timenode.boot = (eventEmitter, sender) => {
+    const abi = Util.getABI('EventEmitter')
 
     const timenode = new Timenode()
     timenode.eventEmitter = web3.eth.contract(abi).at(
-        address,
+        eventEmitter,
     )
+
+    timenode.sender = sender
 
     return timenode
 }
@@ -39,6 +41,7 @@ Timenode.prototype.subscribeTo = function(scheduler) {
     const event = this.eventEmitter.NewTransactionScheduled({scheduledFrom: scheduler})
 
     event.watch((err, res) => {
+        console.log(err, res)
         if (!err) {
             const newTransaction = res.args.newTransaction
             const bytes = res.args.serializedBytes
@@ -82,7 +85,7 @@ Timenode.prototype.route = function() {
             sT.instance.execute.sendTransaction(
                 bytes,
                 {
-                    from: '0x1cb960969f58a792551c4e8791d643b13025256d',
+                    from: this.sender,
                     gas: data.callGas + 180000 + 100000,
                     gasPrice: data.gasPrice,
                 }, (err,res) => {
@@ -158,8 +161,10 @@ const main = async () => {
     const addr = require('../build/a.json')
     const scheduler = addr.scheduler
     const eventE = addr.eventEmitter
+    console.log(`Timenode using scheduler at address ${scheduler}\nAnd eventEmitter at address ${eventE}`)
+    const sender = await Util.getDefaultSender(web3)
     console.log('Booting the Timenode...')
-    const timenode = Timenode.boot(eventE)
+    const timenode = Timenode.boot(eventE, sender)
 
     timenode.subscribeTo(scheduler)
     console.log(`Timenode subscribed to ${scheduler}`)

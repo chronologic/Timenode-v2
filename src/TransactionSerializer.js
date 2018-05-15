@@ -17,7 +17,7 @@ const TransactionSerializer = function () {}
  * Bytes   - CallData
  * Bytes   - ConditionalCallData
  */
-TransactionSerializer.prototype.serialize = (
+TransactionSerializer.serialize = (
     temporalUnit,
     recipientAddress,
     value,
