@@ -78,7 +78,27 @@ Timenode.prototype.route = function() {
                 return
             }
 
-            const doExecute = () => {
+            const doExecute = async () => {
+                // TODO: From eac.js... Keep?
+                const hasPendingParity = async (txRequest) => {
+                    const provider = web3.currentProvider
+                    return new Promise((resolve, reject) => {
+                        provider.sendAsync(
+                            {
+                            jsonrpc: '2.0',
+                            method: 'parity_pendingTransactions',
+                            params: [],
+                            id: 0o7,
+                            },
+                            (err, res) => {
+                            if (err) reject(err)
+                            const hasTx = res && res.result && !!res.result.filter(tx => tx.to === txRequest).length
+                            resolve(hasTx)
+                            }
+                        )
+                    })
+                }
+
                 if (await hasPendingParity(transaction)) {
                     console.log('pending tx in transaction pool')
                     return
@@ -112,6 +132,7 @@ Timenode.prototype.route = function() {
                  * the conditional value returns true before
                  * sending an exeuction attempt.
                  */
+                console.log('beginnings polling')
                 setInterval(() => {
                     const canExecute = sT.instance.canExecute(bytes)
                     console.log(canExecute)
@@ -123,27 +144,6 @@ Timenode.prototype.route = function() {
         }
     })
 }
-
-// TODO: From eac.js... Keep?
-const hasPendingParity = async (txRequest) => {
-    const provider = web3.currentProvider
-  
-    return new Promise((resolve, reject) => {
-      provider.sendAsync(
-        {
-          jsonrpc: '2.0',
-          method: 'parity_pendingTransactions',
-          params: [],
-          id: 0o7,
-        },
-        (err, res) => {
-          if (err) reject(err)
-          const hasTx = res && res.result && !!res.result.filter(tx => tx.to === txRequest).length
-          resolve(hasTx)
-        }
-      )
-    })
-  }
 
 /**
  * Getter function to retrieve the Store object.
