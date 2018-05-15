@@ -1,0 +1,590 @@
+{
+  "contractName": "InteractiveConditional",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "checkValid",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_valid",
+          "type": "bool"
+        }
+      ],
+      "name": "setValid",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x606060405260008060006101000a81548160ff021916908315150217905550341561002957600080fd5b60f8806100376000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631b98744414604e5780636c64edee146078575b600080fd5b3415605857600080fd5b605e609a565b604051808215151515815260200191505060405180910390f35b3415608257600080fd5b60986004808035151590602001909190505060b0565b005b60008060009054906101000a900460ff16905090565b806000806101000a81548160ff021916908315150217905550505600a165627a7a72305820931e332f1da0d0359e52a3aee58d64bd7f9266addb78cd9c257b7ccf164aad370029",
+  "deployedBytecode": "0x6060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631b98744414604e5780636c64edee146078575b600080fd5b3415605857600080fd5b605e609a565b604051808215151515815260200191505060405180910390f35b3415608257600080fd5b60986004808035151590602001909190505060b0565b005b60008060009054906101000a900460ff16905090565b806000806101000a81548160ff021916908315150217905550505600a165627a7a72305820931e332f1da0d0359e52a3aee58d64bd7f9266addb78cd9c257b7ccf164aad370029",
+  "sourceMap": "25:242:22:-;;;76:5;63:18;;;;;;;;;;;;;;;;;;;;25:242;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:242:22:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;88:90;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;184:81;;;;;;;;;;;;;;;;;;;;;;;;;;;;88:90;139:4;166:5;;;;;;;;;;;159:12;;88:90;:::o;184:81::-;252:6;244:5;;:14;;;;;;;;;;;;;;;;;;184:81;:::o",
+  "source": "pragma solidity 0.4.21;\n\ncontract InteractiveConditional {\n    bool valid = false;\n\n    function checkValid()\n        public view returns (bool)\n    {\n        return valid;\n    }\n\n    function setValid(bool _valid)\n        public\n    {\n        valid = _valid;\n    }\n}",
+  "sourcePath": "/home/logan/Work/v2/chronos/contracts/helpers/InteractiveConditional.sol",
+  "ast": {
+    "absolutePath": "/home/logan/Work/v2/chronos/contracts/helpers/InteractiveConditional.sol",
+    "exportedSymbols": {
+      "InteractiveConditional": [
+        5757
+      ]
+    },
+    "id": 5758,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5735,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5757,
+        "linearizedBaseContracts": [
+          5757
+        ],
+        "name": "InteractiveConditional",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 5738,
+            "name": "valid",
+            "nodeType": "VariableDeclaration",
+            "scope": 5757,
+            "src": "63:18:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 5736,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "63:4:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "66616c7365",
+              "id": 5737,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "bool",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "76:5:22",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              },
+              "value": "false"
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 5745,
+              "nodeType": "Block",
+              "src": "149:29:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5743,
+                    "name": "valid",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5738,
+                    "src": "166:5:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 5742,
+                  "id": 5744,
+                  "nodeType": "Return",
+                  "src": "159:12:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5746,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "checkValid",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5739,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "107:2:22"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5742,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5741,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5746,
+                  "src": "139:4:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5740,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "139:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "138:6:22"
+            },
+            "scope": 5757,
+            "src": "88:90:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5755,
+              "nodeType": "Block",
+              "src": "234:31:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5753,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5751,
+                      "name": "valid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5738,
+                      "src": "244:5:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5752,
+                      "name": "_valid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5748,
+                      "src": "252:6:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "244:14:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 5754,
+                  "nodeType": "ExpressionStatement",
+                  "src": "244:14:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5756,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setValid",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5749,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5748,
+                  "name": "_valid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5756,
+                  "src": "202:11:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5747,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "201:13:22"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5750,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "234:0:22"
+            },
+            "scope": 5757,
+            "src": "184:81:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5758,
+        "src": "25:242:22"
+      }
+    ],
+    "src": "0:267:22"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/logan/Work/v2/chronos/contracts/helpers/InteractiveConditional.sol",
+    "exportedSymbols": {
+      "InteractiveConditional": [
+        5757
+      ]
+    },
+    "id": 5758,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5735,
+        "literals": [
+          "solidity",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:22"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5757,
+        "linearizedBaseContracts": [
+          5757
+        ],
+        "name": "InteractiveConditional",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 5738,
+            "name": "valid",
+            "nodeType": "VariableDeclaration",
+            "scope": 5757,
+            "src": "63:18:22",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 5736,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "63:4:22",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "66616c7365",
+              "id": 5737,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "bool",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "76:5:22",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              },
+              "value": "false"
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 5745,
+              "nodeType": "Block",
+              "src": "149:29:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5743,
+                    "name": "valid",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 5738,
+                    "src": "166:5:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 5742,
+                  "id": 5744,
+                  "nodeType": "Return",
+                  "src": "159:12:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5746,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "checkValid",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5739,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "107:2:22"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5742,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5741,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5746,
+                  "src": "139:4:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5740,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "139:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "138:6:22"
+            },
+            "scope": 5757,
+            "src": "88:90:22",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 5755,
+              "nodeType": "Block",
+              "src": "234:31:22",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 5753,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 5751,
+                      "name": "valid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5738,
+                      "src": "244:5:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 5752,
+                      "name": "_valid",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5748,
+                      "src": "252:6:22",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "src": "244:14:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 5754,
+                  "nodeType": "ExpressionStatement",
+                  "src": "244:14:22"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 5756,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "setValid",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5749,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5748,
+                  "name": "_valid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5756,
+                  "src": "202:11:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5747,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "202:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "201:13:22"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 5750,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "234:0:22"
+            },
+            "scope": 5757,
+            "src": "184:81:22",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5758,
+        "src": "25:242:22"
+      }
+    ],
+    "src": "0:267:22"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-05-15T13:38:54.637Z"
+}

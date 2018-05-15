@@ -2,7 +2,7 @@ const Web3 = require('web3')
 const provider = new Web3.providers.HttpProvider("http://localhost:8545")
 const web3 = new Web3(provider)
 
-const ConditionalDest = require('./ConditionalDest')
+const InteractiveConditional = require('./InteractiveConditional')
 const Scheduler = require('./Scheduler')
 const Serializer = require('./TransactionSerializer')
 
@@ -15,7 +15,7 @@ const main = async () => {
         })
     })
 
-    const conditionalDestination = await ConditionalDest.new({from: me,gas: 3000000})
+    const intConditional = await InteractiveConditional.new({from: me,gas: 3000000})
 
     const curBlockNum = web3.eth.blockNumber
     const params = {
@@ -24,13 +24,12 @@ const main = async () => {
         callGas: 200000,
         gasPrice: 30,
         executionWindowStart: curBlockNum + 30,
-        executionWindowLength: 40,
+        executionWindowLength: 4000,
         bounty: 60,
         fee: 70,
-        conditionalDest: '0x0000000000000000000000000000000000000000',
-        // conditionalDest: conditionalDestination.address,
+        conditionalDest: intConditional.address,
         callData: '0x' + '1337'.repeat(7),
-        conditionalCallData: '0x00',
+        conditionalCallData: intConditional.checkValid.getData(),
     }
 
     const encoded = Serializer.serialize(
