@@ -26,7 +26,7 @@ Timenode.boot = (eventEmitter, sender) => {
     )
 
     timenode.sender = sender
-    timenode.polling = []
+    timenode.pollStore = {}
 
     return timenode
 }
@@ -54,7 +54,7 @@ Timenode.prototype.subscribeTo = function(scheduler) {
             }
             this.store[newTransaction] = bytes
             const data = this.parseBytes(bytes)
-            console.log(data)
+            console.log(`New Transaction registered: ${newTransaction}`)
         }
     })
 }
@@ -65,8 +65,6 @@ Timenode.prototype.subscribeTo = function(scheduler) {
  */
 Timenode.prototype.route = function() {
     if (!this.store) return
-    ///
-    if (this.polling.length !== 0) return 
     ///
     const transactions = Object.keys(this.store)
     transactions.forEach(async (transaction) => {
@@ -106,22 +104,30 @@ Timenode.prototype.route = function() {
                 if (await hasPendingParity(transaction)) {
                     console.log('pending tx in transaction pool')
                     return
+                } else {
+                    sT.instance.execute.sendTransaction(
+                        bytes,
+                        {
+                            from: this.sender,
+                            gas: data.callGas + 180000 + 100000,
+                            gasPrice: data.gasPrice,
+                        }, (err,res) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            else {
+                                console.log(`Executed! ${res}`)
+                                if (this.store[transaction]) {
+                                    delete this.store[transaction]
+                                }
+                                if (this.pollStore[transactions]) {
+                                    clearInterval(this.pollStore[transaction])
+                                    delete this.pollStore[transaction]
+                                }
+                            }
+                        }
+                    )
                 }
-                sT.instance.execute.sendTransaction(
-                    bytes,
-                    {
-                        from: this.sender,
-                        gas: data.callGas + 180000 + 100000,
-                        gasPrice: data.gasPrice,
-                    }, (err,res) => {
-                        if (!err) {
-                            console.log(res)
-                        }
-                        else {
-                            console.log(`Executed! ${res}`)
-                        }
-                    }
-                )
             }
 
             /** If there is no conditionalDest, this is a simple 
@@ -137,15 +143,17 @@ Timenode.prototype.route = function() {
                  * sending an exeuction attempt.
                  */
                 console.log('beginning the polling')
-                this.polling.push(
-                    setInterval(() => {
-                        const canExecute = sT.instance.canExecute(bytes)
-                        if (canExecute === false) return
-                        else {
-                            doExecute()
-                        }
-                    }, 1200)
-                )
+                delete this.store[transaction]
+                this.pollStore[transaction] = setInterval(async () => {
+                    const canExecute = sT.instance.canExecute.call(bytes)
+                    if (canExecute === false) {
+                        console.log(`Within execution window but conditional returns false.`)
+                    }
+                    else {
+                        console.log('Conditional returns true... Executing')
+                        await doExecute()
+                    }
+                }, 1200)
             }
         } else {
             //TODO better logging
