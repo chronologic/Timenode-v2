@@ -66,7 +66,7 @@ Timenode.prototype.subscribeTo = function(scheduler) {
 Timenode.prototype.route = function() {
     if (!this.store) return
     ///
-    if (this.polling.length === 0) return 
+    if (this.polling.length !== 0) return 
     ///
     const transactions = Object.keys(this.store)
     transactions.forEach(async (transaction) => {
@@ -140,7 +140,10 @@ Timenode.prototype.route = function() {
                 this.polling.push(
                     setInterval(() => {
                         const canExecute = sT.instance.canExecute(bytes)
-                        console.log(canExecute)
+                        if (canExecute === false) return
+                        else {
+                            doExecute()
+                        }
                     }, 1200)
                 )
             }
