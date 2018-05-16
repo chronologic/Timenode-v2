@@ -26,6 +26,7 @@ Timenode.boot = (eventEmitter, sender) => {
     )
 
     timenode.sender = sender
+    timenode.polling = []
 
     return timenode
 }
@@ -64,6 +65,9 @@ Timenode.prototype.subscribeTo = function(scheduler) {
  */
 Timenode.prototype.route = function() {
     if (!this.store) return
+    ///
+    if (this.polling.length === 0) return 
+    ///
     const transactions = Object.keys(this.store)
     transactions.forEach(async (transaction) => {
         const sT = ScheduledTransaction.at(transaction)
@@ -132,11 +136,13 @@ Timenode.prototype.route = function() {
                  * the conditional value returns true before
                  * sending an exeuction attempt.
                  */
-                console.log('beginnings polling')
-                setInterval(() => {
-                    const canExecute = sT.instance.canExecute(bytes)
-                    console.log(canExecute)
-                }, 1200)
+                console.log('beginning the polling')
+                this.polling.push(
+                    setInterval(() => {
+                        const canExecute = sT.instance.canExecute(bytes)
+                        console.log(canExecute)
+                    }, 1200)
+                )
             }
         } else {
             //TODO better logging
