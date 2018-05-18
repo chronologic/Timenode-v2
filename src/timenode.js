@@ -194,10 +194,13 @@ Timenode.prototype.parseBytes = function(bytes) {
     return data
 }
 
+const EVENT_EMITTER = '0x803246d50e67Bb0bA65Ef09565FA58Dc511Dc48a'
+const SCHEDULER = '0x7A31174feA3deec9Ed8Ecc899A951705de9a0281'
+
 const main = async () => {
-    const addr = require('../build/a.json')
-    const scheduler = addr.scheduler
-    const eventE = addr.eventEmitter
+    // const addr = require('../build/a.json')
+    const scheduler = SCHEDULER
+    const eventE = EVENT_EMITTER
     console.log(`Timenode using scheduler at address ${scheduler}\nAnd eventEmitter at address ${eventE}`)
     const sender = await Util.getDefaultSender(web3)
     console.log('Booting the Timenode...')
