@@ -111,6 +111,7 @@ Timenode.prototype.route = function() {
                             from: this.sender,
                             gas: data.callGas + 180000 + 100000,
                             gasPrice: data.gasPrice,
+                            value: 0,
                         }, (err,res) => {
                             if (err) {
                                 console.log(err)
