@@ -17,7 +17,7 @@ const repl = require('repl')
 const replServer = repl.start('[Reinvent Finance Demo] $ ')
 replServer.defineCommand('info', () => {
     console.log(`
-Welcome to the v0.0.1 Chronos TimeNode Demo...`)
+Welcome to the Reinvent Finance Demo...`)
 })
 replServer.defineCommand('changePrice', async (arg) => {
     await PriceFeed.changePrice(arg)
