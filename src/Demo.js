@@ -11,12 +11,12 @@ const w3 = new Web3(provider)
  * the TimeNode.
  */
 const repl = require('repl')
-const replServer = repl.start('[Chronos TimeNode Demo] $ ')
+const replServer = repl.start('[Reinvent Finance Demo] $ ')
 replServer.defineCommand('info', () => {
     console.log(`
 Welcome to the v0.0.1 Chronos TimeNode Demo...`)
 })
-replServer.defineCommand('scheduleConditional', async () => {
+replServer.defineCommand('setupStopLoss', async () => {
     const InteractiveConditional = require('./InteractiveConditional')
     const Scheduler = require('./Scheduler')
     const Serializer = require('./TransactionSerializer')
