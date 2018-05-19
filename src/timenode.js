@@ -1,5 +1,5 @@
 const b58 = require('base-58')
-const IPFS = require('ipfs')
+// const IPFS = require('ipfs')
 
 const Web3 = require('web3')
 const provider = new Web3.providers.HttpProvider("http://localhost:8545")
